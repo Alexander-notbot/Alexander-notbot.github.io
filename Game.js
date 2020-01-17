@@ -160,7 +160,7 @@ function preDead(){
     ctx.shadowOffsetY = 2000;
 	ctx.fillRect(0, 0, canv.width, canv.height);
 	ctx.shadowBlur = opts.a;
-	ctx.fillText("Score: "+opts.score, canv.width/2-2000, canv.height/2-2000);
+	ctx.fillText("Рекорд: "+opts.score, canv.width/2-2000, canv.height/2-2000);
 };
 
 function end(){
