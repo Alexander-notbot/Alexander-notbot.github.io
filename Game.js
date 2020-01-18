@@ -24,12 +24,18 @@ function apple() {
 function check(){
 	let a = 0;
 	bodyX.forEach(function (X) {
-		if (pos.x==X && pos.y == bodyY[a]){
+		if (pos.x == X && pos.y == bodyY[a]){
 			end();
 		};
 		a++
 	});
-}
+	if (pos.x < 0 || pos.y < 0){
+		end();
+	};
+	if (pos.x >= canv.width || pos.y >= canv.height){
+		end();
+	};
+};
 
 function body(){
 	let a = 0;
@@ -49,27 +55,18 @@ function body(){
 function keyChange(e){
 	switch(e.keyCode){
 		case 37:
-			if (opts.key !=3){
-				opts.key = 1
-			};
+			opts.key = 1;
 			break;
 		case 38:
-			if (opts.key !=2){
-				opts.key = 4
-			};
+			opts.key = 4;
 			break;
 		case 39:
-			if (opts.key !=1){
-				opts.key = 3
-			};
+			opts.key = 3;
 			break;
 		case 40:
-			if (opts.key !=4){
-				opts.key = 2
-			};
+			opts.key = 2;
 			break;
 		case 82:
-
 			setup();
 			break;
 		case 65:
@@ -89,6 +86,7 @@ function setup(){
 		size: 20,
 		bodySize: 18,
 		key: 3,
+		oldKey: 3,
 		preKey: 3,
 		score: -1,
 		a: 0
@@ -116,7 +114,6 @@ function dead(){
 	if (opts.a < 20){
 		opts.a++;
 		setTimeout(dead, 20);
-		console.log(opts.a);
 	} else {
 	//появление кнопки меню и кнопки рестарта
 	opts.a = 0;
@@ -131,7 +128,37 @@ function move (){
 	ctx.fillStyle = opts.bodyColor;
 	switch(opts.key){
 		case 1:
-			ctx.fillRect(pos.x-=opts.size,pos.y,opts.size,opts.size);
+			if (opts.oldKey !=3){
+				opts.oldKey = opts.key;
+			} else {
+				opts.key = opts.oldKey;
+			};
+			break;
+		case 2:
+			if (opts.oldKey !=4){
+				opts.oldKey = opts.key;
+			} else {
+				opts.key = opts.oldKey;
+			};
+			break;
+		case 3:
+			if (opts.oldKey !=1){
+				opts.oldKey = opts.key;
+			} else {
+				opts.key = opts.oldKey;
+			};
+			break;
+		case 4:
+			if (opts.oldKey !=2){
+				opts.oldKey = opts.key;
+			} else {
+				opts.key = opts.oldKey;
+			};
+			break;
+	};
+	switch(opts.key){
+		case 1:
+				ctx.fillRect(pos.x-=opts.size,pos.y,opts.size,opts.size);
 			break;
 		case 2:
 			ctx.fillRect(pos.x,pos.y+=opts.size,opts.size,opts.size);
