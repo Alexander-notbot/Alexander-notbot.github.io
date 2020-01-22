@@ -1,13 +1,15 @@
 var canv = document.getElementById("canvas"),
 	ctx  = canv.getContext('2d'),
+	bb	 = document.getElementById("boxbutton"),
 
 	opts = {
 		size: 20,
 	},
 	timer;
 
-canv.width = window.innerWidth-window.innerWidth%opts.size;
+canv.width	= window.innerWidth-window.innerWidth%opts.size;
 canv.height = window.innerHeight-window.innerHeight%opts.size;
+canv.height = canv.height/100*90;
 ctx.fillStyle = opts.bodyColor;
 
 function apple() {
@@ -176,8 +178,6 @@ function move (){
 
 
 function preDead(){
-	canv.width = window.innerWidth;
-	canv.height = window.innerHeight;
 	ctx.fillStyle = opts.theme;
 	ctx.textAlign = "center";
 	ctx.textBaseline = "middle";
@@ -187,7 +187,7 @@ function preDead(){
     ctx.shadowOffsetY = 2000;
 	ctx.fillRect(0, 0, canv.width, canv.height);
 	ctx.shadowBlur = opts.a;
-	ctx.fillText("Рекорд: "+opts.score, canv.width/2-2000, canv.height/2-2000);
+	ctx.fillText("Счёт: "+opts.score, canv.width/2-2000, canv.height/2-2000);
 };
 
 function end(){

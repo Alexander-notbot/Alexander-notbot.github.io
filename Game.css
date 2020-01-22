@@ -1,4 +1,11 @@
 body {
 	margin:0px;
 	overflow: hidden;
-};
+}
+button {
+	border-radius: 5px;
+	border: 0px;
+	padding: 0px;
+	margin: 1%;
+	width: 20%;
+}
