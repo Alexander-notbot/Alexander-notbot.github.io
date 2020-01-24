@@ -1,8 +1,14 @@
+html {
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+}
 body {
 	margin:0px;
 	overflow: hidden;
 }
 button {
+        font-size: 100px;
+        height: 100px;
 	border-radius: 5px;
 	border: 0px;
 	padding: 0px;
